@@ -1,0 +1,30 @@
+.container {	
+	display: flex;
+	flex-direction: column;
+	place-content: left;
+	padding: 10px 0px;
+	margin: 10px 0px;
+}
+.label {
+	font-weight: bold;
+	padding-left: 10px;
+}
+.input {
+	all: unset;
+	border: 2px rgb(255, 255, 255) solid;
+	border-radius: 25px;
+	padding: 10px;
+	background-color: #242424;
+
+	font-weight: bold;
+	width: 20vw;
+
+  	transition: 0.35s;
+}
+.input:hover,
+.input:focus {
+	background-color: white;
+	color: black;
+
+	border-color: blueviolet;
+}
