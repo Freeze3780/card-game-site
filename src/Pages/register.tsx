@@ -26,8 +26,7 @@ export default function RegisterPage() {
 
 	function submitHandler(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-
-
+		
 	}
 
 	return (

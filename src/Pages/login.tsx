@@ -10,13 +10,19 @@ export default function LoginPage() {
 	
 	function emailChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 			setEmail(e.target.value)
-		};
+	};
+
 	function passwordChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 			setPassword(e.target.value)
-		};
+	};
+
+	function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+			e.preventDefault();
+			
+	}
 
 	return (
-		<form className="form-container">
+		<form className="form-container" onSubmit={submitHandler}>
 			<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" />
 			<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" />
 			<A to='#' text="Forgot your password?" />
