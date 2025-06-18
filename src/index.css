@@ -22,3 +22,12 @@ body {
   height: 100vh;
   /* border: 2px solid rgba(17, 255, 0, 0.501); */ /* For debugging */
 }
+
+/* ------------- Global Styles ------------- */
+.form-container {
+	border: 2px gray solid;
+	border-radius: 25px;
+	padding: 30px 15px;
+	display: flex;
+	flex-direction: column;
+}
