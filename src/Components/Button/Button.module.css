@@ -15,7 +15,7 @@
 }
 
 .button:hover {
-  border-color: blueviolet;
+  border-color: var(--accent-color);
 
 }
 .button:focus,

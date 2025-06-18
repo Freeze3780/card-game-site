@@ -11,7 +11,7 @@ export default function LoginPage() {
 			<InputContainer label="Password" type="password" />
 			<A to="#" text="Forgot your password?" />
 			<Link to={"#"}>
-				<Button>Login</Button>
+				<Button to='#'>Login</Button>
 			</Link>
 			<A to="/register" text="Don't have an account? Sign up"/>
 		</form>
