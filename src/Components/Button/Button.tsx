@@ -1,6 +1,10 @@
 import styles from './Button.module.css';
 
-export default function Button({ children }: { children: string; }) {
+type props = {
+	children: string;
+}
+
+export default function Button({ children }: props) {
 	return (
 		<button className={styles.button}>{children}</button>
 	);

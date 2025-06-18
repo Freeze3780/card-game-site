@@ -1,6 +1,12 @@
 import styles from './InputContainer.module.css';
 
-export default function InputContainer({ label, type, placeholder }: { label: string; type: string; placeholder?: string; }) {
+type props = {
+	label: string;
+	type: string;
+	placeholder?: string;
+};
+
+export default function InputContainer({ label, type, placeholder }: props) {
 	return (
 		<div className={styles.container}>
 			<label className={styles.label}>{label}</label>

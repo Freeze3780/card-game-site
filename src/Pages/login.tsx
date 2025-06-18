@@ -10,7 +10,7 @@ function ForgotPassword() {
 }
 function SignUp() {
 	return (
-		<Link to={"#"} className="link">Don't have an account? Sign up</Link>
+		<Link to={"/register"} className="link">Don't have an account? Sign up</Link>
 	);
 }
 
