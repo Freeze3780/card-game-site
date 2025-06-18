@@ -1,14 +1,14 @@
-import InputContainer from '../Components/Input/Input.tsx';
 import Button from '../Components/Button/Button.tsx';
 import { Link } from 'react-router-dom';
 import A from '../Components/A/A.tsx';
+import Input from '../Components/Input/Input.tsx';
 
 
 export default function LoginPage() {
 	return (
 		<form className="form-container">
-			<InputContainer label="Email" type="email" placeholder="user@example.com" />
-			<InputContainer label="Password" type="password" />
+			<Input label="Email" type="email" placeholder="user@example.com" />
+			<Input label="Password" type="password" />
 			<A to='#' text="Forgot your password?" />
 			<Link to='#'>
 				<Button to='#'>Login</Button>
