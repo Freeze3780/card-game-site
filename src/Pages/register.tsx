@@ -1,14 +1,32 @@
-import React, { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import supabase from "../../utils/supabase";
 import { hashPassword } from "../../utils/password.ts";
 import Button from "../Components/Button/Button";
 import Input from "../Components/Input/Input";
+import type { User } from "../../utils/types.ts";
 
 export default function RegisterPage() {
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
+
 	const [password, setPassword] = useState("");
+	const passwordRef = useRef<HTMLInputElement>(null);
+	
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const confirmPasswordRef = useRef<HTMLInputElement>(null);
+
+	// * Change border color on password field mismatch
+	useEffect(() => {
+		if (passwordRef.current && confirmPasswordRef.current){
+			if (password !== confirmPassword && password !== "" && confirmPassword !== ""){
+				passwordRef.current.style.borderColor = "crimson";
+				confirmPasswordRef.current.style.borderColor = "crimson";
+			} else {
+				passwordRef.current.style.borderColor = "";
+				confirmPasswordRef.current.style.borderColor = "";
+			}
+		}
+	}, [password, confirmPassword]);
 
 	function emailChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value)
@@ -28,10 +46,7 @@ export default function RegisterPage() {
 
 	async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-
-		if (password != confirmPassword){
-			//TODO: implement style changes
-			console.error("passwords don't match");
+		if (password !== confirmPassword){
 			return false;
 		}
 
@@ -41,6 +56,27 @@ export default function RegisterPage() {
 			password
 		);
 
+		// * Checking if the email is already registered or if the username is already used 
+		const { data } = await supabase
+		.from('users')
+		.select()
+		.or(`email.eq.${email},name.eq.${name}`)
+		.overrideTypes<Array<User>, { merge: false }>();
+
+		if (data !== null){
+			for (let user of data){
+				if (user.email === email){
+					console.error("Email already registered");
+					return false;
+				}
+				if (user.name === name){
+					console.error("Username already used");
+					return false;
+				}
+			}
+		}
+
+		// * Inserting User into the DB
 		const { error } = await supabase
 			.from('users')
 			.insert({ 
@@ -54,16 +90,29 @@ export default function RegisterPage() {
 
 	return (
 		<form className="form-container" onSubmit={submitHandler}>
-			<Input
+			<Input label="Email"
 				value={email}
-				label="Email" 
-				type="email" 
+				type="email"
 				placeholder="user@example.com"
 				onChange={emailChangeHandler}
 			/>
-			<Input label="Username" type="text" onChange={nameChangeHandler} value={name} />
-			<Input label="Password" type="password" onChange={passwordChangeHandler} value={password}/>
-			<Input label="Confirm Password" type="password" onChange={confirmPasswordChangeHandler} value={confirmPassword} />
+			<Input label="Username"
+				type="text"
+				onChange={nameChangeHandler}
+				value={name}
+			/>
+			<Input label="Password"
+				type="password"
+				ref={passwordRef}
+				onChange={passwordChangeHandler}
+				value={password}
+			/>
+			<Input label="Confirm Password" 
+				type="password"
+				ref={confirmPasswordRef}
+				onChange={confirmPasswordChangeHandler}
+				value={confirmPassword}
+			/>
 			<Button>Sign up</Button>
 		</form>
 	);

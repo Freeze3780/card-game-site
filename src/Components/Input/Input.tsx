@@ -7,9 +7,10 @@ type props = {
 	type: string;
 	placeholder?: string;
 	onChange?: ChangeEventHandler<HTMLInputElement>;
+	ref?: React.Ref<HTMLInputElement> 
 };
 
-export default function Input({ value, label, type, placeholder, onChange }: props) {
+export default function Input({ value, label, type, placeholder, onChange, ref }: props) {
 	return (
 		<div className={styles.container}>
 			<label className={styles.label}>{label}</label>
@@ -19,6 +20,7 @@ export default function Input({ value, label, type, placeholder, onChange }: pro
 				type={type} 
 				placeholder={typeof placeholder === "string" ? placeholder : label} 
 				onChange={onChange}
+				ref={ref}
 			/>
 		</div>
 	);

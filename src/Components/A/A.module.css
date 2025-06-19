@@ -7,5 +7,5 @@
 }
 
 .link:hover {
-  	text-decoration: underline blueviolet;
+  	text-decoration: underline var(--accent-color);
 }

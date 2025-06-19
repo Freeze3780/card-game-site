@@ -11,10 +11,10 @@
 }
 .input {
 	all: unset;
-	border: 2px rgb(255, 255, 255) solid;
+	border: 2px var(--light-color) solid;
 	border-radius: 25px;
 	padding: 10px;
-	background-color: #242424;
+	background-color: var(--dark-color);
 
 	font-weight: bold;
 	width: 20vw;
@@ -23,8 +23,7 @@
 }
 .input:hover,
 .input:focus {
-	background-color: white;
-	color: black;
-
-	border-color: blueviolet;
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	border-color: var(--accent-color);
 }
