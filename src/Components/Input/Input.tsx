@@ -6,7 +6,7 @@ type props = {
 	label: string;
 	type: string;
 	placeholder?: string;
-	onChange: ChangeEventHandler<HTMLInputElement>;
+	onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
 export default function Input({ value, label, type, placeholder, onChange }: props) {

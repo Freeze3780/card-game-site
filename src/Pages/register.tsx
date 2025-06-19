@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import supabase from "../../utils/supabase";
+import { hashPassword } from "../../utils/password.ts";
 import Button from "../Components/Button/Button";
 import Input from "../Components/Input/Input";
 
@@ -24,9 +26,30 @@ export default function RegisterPage() {
 		setConfirmPassword(e.target.value)
 	};
 
-	function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+	async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		
+
+		if (password != confirmPassword){
+			//TODO: implement style changes
+			console.error("passwords don't match");
+			return false;
+		}
+
+		console.log(
+			email,
+			name,
+			password
+		);
+
+		const { error } = await supabase
+			.from('users')
+			.insert({ 
+				email: email,
+				name: name,
+				password: await hashPassword(password)
+			});
+		if (error) console.error(error);
+		else console.log("Row inserted succesfully");
 	}
 
 	return (
@@ -41,7 +64,7 @@ export default function RegisterPage() {
 			<Input label="Username" type="text" onChange={nameChangeHandler} value={name} />
 			<Input label="Password" type="password" onChange={passwordChangeHandler} value={password}/>
 			<Input label="Confirm Password" type="password" onChange={confirmPasswordChangeHandler} value={confirmPassword} />
-			<Button to={"#"}>Sign up</Button>
+			<Button>Sign up</Button>
 		</form>
 	);
 }

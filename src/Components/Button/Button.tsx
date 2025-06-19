@@ -1,15 +1,12 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
 type props = {
-	to: string;
 	children: string;
 }
 
-export default function Button({ to, children }: props) {
+export default function Button({ children }: props) {
 	return (
-		<Link to={to}>
-			<button type='submit' className={styles.button}>{children}</button>
-		</Link>
+		<button type='submit' className={styles.button}>{children}</button>
 	);
 }
