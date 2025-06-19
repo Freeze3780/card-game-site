@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { verifyPassword } from "../../utils/password.ts";
 import type { User } from "../../utils/types.ts";
-import type { PostgrestError } from '@supabase/supabase-js';
 import Button from '../Components/Button/Button.tsx';
 import A from '../Components/A/A.tsx';
 import Input from '../Components/Input/Input.tsx';
