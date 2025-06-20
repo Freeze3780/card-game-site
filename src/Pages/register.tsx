@@ -113,39 +113,41 @@ export default function RegisterPage() {
 	}
 
 	return (
-		<form className="form-container" onSubmit={submitHandler}>
-			<Input label="Email"
-				value={email}
-				type="email"
-				placeholder="user@example.com"
-				onChange={emailChangeHandler}
-				info={emailInfo}
-				infoClass="wrong"
-			/>
-			<Input label="Username"
-				type="text"
-				onChange={nameChangeHandler}
-				value={name}
-				info={nameInfo}
-				infoClass="wrong"
-			/>
-			<Input label="Password"
-				type="password"
-				ref={passwordRef}
-				onChange={passwordChangeHandler}
-				value={password}
-				info={passwordInfo}
-				infoClass="wrong"
-			/>
-			<Input label="Confirm Password" 
-				type="password"
-				ref={confirmPasswordRef}
-				onChange={confirmPasswordChangeHandler}
-				value={confirmPassword}
-				info={passwordInfo}
-				infoClass="wrong"
-			/>
-			<Button>Sign up</Button>
-		</form>
+		<div className="flex-centered-container">
+			<form className="form-container" onSubmit={submitHandler}>
+				<Input label="Email"
+					value={email}
+					type="email"
+					placeholder="user@example.com"
+					onChange={emailChangeHandler}
+					info={emailInfo}
+					infoClass="wrong"
+				/>
+				<Input label="Username"
+					type="text"
+					onChange={nameChangeHandler}
+					value={name}
+					info={nameInfo}
+					infoClass="wrong"
+				/>
+				<Input label="Password"
+					type="password"
+					ref={passwordRef}
+					onChange={passwordChangeHandler}
+					value={password}
+					info={passwordInfo}
+					infoClass="wrong"
+				/>
+				<Input label="Confirm Password"
+					type="password"
+					ref={confirmPasswordRef}
+					onChange={confirmPasswordChangeHandler}
+					value={confirmPassword}
+					info={passwordInfo}
+					infoClass="wrong"
+				/>
+				<Button>Sign up</Button>
+			</form>
+		</div>
 	);
 }

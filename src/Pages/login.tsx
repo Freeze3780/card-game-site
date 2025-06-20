@@ -52,12 +52,14 @@ export default function LoginPage() {
 	}
 
 	return (
-		<form className="form-container" onSubmit={submitHandler}>
-			<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='wrong' />
-			<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='wrong' />
-			<A to='#' text="Forgot your password?" />
-			<Button>Login</Button>
-			<A to="/register" text="Don't have an account? Sign up"/>
-		</form>
+		<div className='flex-centered-container'>
+			<form className="form-container" onSubmit={submitHandler}>
+				<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='wrong' />
+				<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='wrong' />
+				<A to='#' text="Forgot your password?" />
+				<Button>Login</Button>
+				<A to="/register" text="Don't have an account? Sign up"/>
+			</form>
+		</div>
 	);
 }
