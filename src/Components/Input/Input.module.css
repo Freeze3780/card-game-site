@@ -1,16 +1,24 @@
 .container {	
-	display: flex;
-	flex-direction: column;
-	place-content: left;
-	padding: 10px 0px;
+	display: grid;
+	grid-template: 
+		"label info"
+		"input input";
+	align-items: end;
+
+	padding: 0px;
 	margin: 10px 0px;
+	/* border: 1px rgba(0, 255, 0, 0.5) solid; */
+	min-height: 10vh;
 }
+
 .label {
+	grid-area: label;
+	/* border: 1px rgba(255, 0, 0, 0.5) solid; */
 	font-weight: bold;
 	padding-left: 10px;
 }
 .input {
-	all: unset;
+	grid-area: input;
 	border: 2px var(--light-color) solid;
 	border-radius: 25px;
 	padding: 10px;
@@ -18,6 +26,7 @@
 
 	font-weight: bold;
 	width: 20vw;
+	height: 50%;
 
   	transition: 0.35s;
 }
@@ -26,4 +35,12 @@
 	background-color: var(--light-color);
 	color: var(--dark-color);
 	border-color: var(--accent-color);
+}
+.info{
+	/* border: 1px rgba(0, 0, 255, 0.5) solid; */
+	grid-area: info;
+	display: inline;
+	margin: 0;
+	text-align: right;
+	font-size: 0.875rem;
 }

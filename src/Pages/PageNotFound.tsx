@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import Button from "../Components/Button/Button";
 
 export default function PageNotFound() {
 	return (
 		<>
-			<h1>404 Not Found</h1>
+			<h1>404 Page Not Found</h1>
 			<Link to={"/"}>
-				<button>Go Back Home</button>
+				<Button>Go Back Home</Button>
 			</Link>
 		</>
 	);
