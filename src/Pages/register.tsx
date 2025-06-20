@@ -25,8 +25,8 @@ export default function RegisterPage() {
 		if (passwordRef.current && confirmPasswordRef.current){
 			if (password !== confirmPassword && password !== "" && confirmPassword !== ""){
 				setPasswordInfo("These Field must match");
-				passwordRef.current.style.borderColor = "crimson";
-				confirmPasswordRef.current.style.borderColor = "crimson";
+				passwordRef.current.style.borderColor = "var(--danger)";
+				confirmPasswordRef.current.style.borderColor = "var(--danger)";
 			} else {
 				setPasswordInfo("");
 				passwordRef.current.style.borderColor = "";
@@ -34,6 +34,12 @@ export default function RegisterPage() {
 			}
 		}
 	}, [password, confirmPassword]);
+
+	// * Remove errors when values are changed
+	useEffect(() => {
+		setEmailInfo("");
+		setNameInfo("");
+	}, [email, name]);
 
 	function emailChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value)
@@ -54,7 +60,11 @@ export default function RegisterPage() {
 	async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
+		setEmailInfo("");
+		setNameInfo("");
+		setPasswordInfo("");
 		if ([email, name, password, confirmPassword].includes("")){
+			setEmailInfo("All Fields are Requiered");
 			return false;
 		}
 
@@ -70,7 +80,7 @@ export default function RegisterPage() {
 
 		// * Checking if the email is already registered or if the username is already used 
 		let pass = true;
-		setEmailInfo("");	
+		setEmailInfo("");
 		{
 			const { data } = await supabase
 			.from('users')
@@ -114,21 +124,21 @@ export default function RegisterPage() {
 
 	return (
 		<div className="flex-centered-container">
-			<form className="form-container" onSubmit={submitHandler}>
+			<form className="column-card" onSubmit={submitHandler}>
 				<Input label="Email"
 					value={email}
 					type="email"
 					placeholder="user@example.com"
 					onChange={emailChangeHandler}
 					info={emailInfo}
-					infoClass="wrong"
+					infoClass="danger-text"
 				/>
 				<Input label="Username"
 					type="text"
 					onChange={nameChangeHandler}
 					value={name}
 					info={nameInfo}
-					infoClass="wrong"
+					infoClass="danger-text"
 				/>
 				<Input label="Password"
 					type="password"
@@ -136,7 +146,7 @@ export default function RegisterPage() {
 					onChange={passwordChangeHandler}
 					value={password}
 					info={passwordInfo}
-					infoClass="wrong"
+					infoClass="danger-text"
 				/>
 				<Input label="Confirm Password"
 					type="password"
@@ -144,7 +154,7 @@ export default function RegisterPage() {
 					onChange={confirmPasswordChangeHandler}
 					value={confirmPassword}
 					info={passwordInfo}
-					infoClass="wrong"
+					infoClass="danger-text"
 				/>
 				<Button>Sign up</Button>
 			</form>

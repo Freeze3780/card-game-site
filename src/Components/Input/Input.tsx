@@ -13,9 +13,6 @@ type props = {
 };
 
 export default function Input({ value, label, type, placeholder, onChange, ref, info, infoClass }: props) {
-	if (typeof infoClass !== "string"){
-		infoClass = "correct"
-	}
 	return (
 		<div className={styles.container}>
 			<label className={styles.label}>{label}</label>

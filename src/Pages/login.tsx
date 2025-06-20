@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { verifyPassword } from "../../utils/password.ts";
-import type { User } from "../../utils/types.ts";
 
 import A from '../Components/A/A.tsx';
 import Input from '../Components/Input/Input.tsx';
@@ -16,46 +15,53 @@ export default function LoginPage() {
 	const [password, setPassword] = useState("");
 	const [passwordInfo, setPasswordInfo] = useState("");
 	
+	useEffect(() => {
+		setEmailInfo("");
+		setPasswordInfo("");
+	}, [email, password]);
+
 	function emailChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value);
-		// console.log(email);
 	}
 
 	function passwordChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value);
-		// console.log(password);
 	}
 
 	async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const { data, error } = await supabase
-			.from("users")
-			.select()
-			.eq("email", email)
-		if (error) console.error(error);
-		else console.log(data);
 
 		setEmailInfo("");
-		if (data === null){
-			setEmailInfo("Email not registered");
+		setPasswordInfo("");
+		if ([email, password].includes("")){
+			setEmailInfo("All Fields are Requiered");
 			return false;
 		}
 
-		setPasswordInfo("");
-		const user: User = {...data[0]};
-		if (await verifyPassword(password, user.password)){
+		const { data } = await supabase
+			.from("users")
+			.select()
+			.eq("email", email)
+			.single();
+
+		if (data === null){
+			setEmailInfo("Email Not Registered");
+			return false;
+		}
+
+		if (await verifyPassword(password, data.password)){
 			return true;
 		}else {
-			setPasswordInfo("Wrong Password");
+			setPasswordInfo("Incorrect Password");
 			return false;
 		}
 	}
 
 	return (
 		<div className='flex-centered-container'>
-			<form className="form-container" onSubmit={submitHandler}>
-				<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='wrong' />
-				<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='wrong' />
+			<form className="column-card" onSubmit={submitHandler}>
+				<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='danger-text' />
+				<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='danger-text' />
 				<A to='#' text="Forgot your password?" />
 				<Button>Login</Button>
 				<A to="/register" text="Don't have an account? Sign up"/>

@@ -4,25 +4,49 @@
 	font-weight: 400;
 
 	color-scheme: light dark;
-	color: var(--light-color);
-	background-color: black;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	/* Color Variables */
-	--dark-color: #191919;
-	--light-color: hsl(15, 50%, 97%);
-	--accent-color: blueviolet;
-	--correct-color: hsl(103, 45%, 47%);
-	--wrong-color: crimson;
-	/* --useful-color: rgb(55, 0, 255); */
+	/* Colors */
+	--bg-dark: hsl(224 0% 1%);
+	--bg: hsl(224 0% 6%);
+	--bg-light: hsl(224 0% 9%);
+	--bg-gradient: linear-gradient(0deg, var(--bg), var(--bg-light));
+	--text: hsl(224 0% 95%);
+	--text-muted: hsl(224 0% 69%);
+	/* -------------------------- */
+	--highlight: hsl(224 0% 39%);
+	--border: hsl(224 0% 28%);
+	--border-muted: hsl(224 0% 18%);
+	/* -------------------------- */
+	--primary: hsl(263 73% 38%);
+	--secondary: hsl(259 56% 64%);
+	/* -------------------------- */
+	--danger: hsl(7 100% 66%);
+	--warning: hsl(53 100% 21%);
+	--success: hsl(162 100% 22%);
+	--info: hsl(217 100% 70%);
+}
+@media (prefers-color-scheme: light){
+	:root {
+		--bg-dark: hsl(246 100% 100%);
+		--bg: hsl(246 100% 100%);
+		--bg-light: hsl(246 100% 100%);
+		--text: hsl(269 100% 11%);
+		--text-muted: hsl(260 71% 39%);
+		--highlight: hsl(249 100% 100%);
+		--border: hsl(253 80% 66%);
+		--border-muted: hsl(252 100% 79%);
+		--primary: hsl(260 71% 39%);
+		--secondary: hsl(56 100% 6%);
+		--danger: hsl(4 99% 37%);
+		--warning: hsl(50 100% 12%);
+		--success: hsl(159 100% 9%);
+		--info: hsl(215 95% 42%);
+	}
 }
 
 body {
 	margin: 0;
+	background-color: var(--bg-dark);
 }
 
 /* ------------- Global Styles ------------- */
@@ -34,17 +58,26 @@ body {
 	height: 100vh;
 }
 
-.form-container {
-	border: 2px gray solid;
+.column-card {
+	border: 2px var(--border) solid;
 	border-radius: 25px;
 	padding: 30px 15px;
 	display: flex;
 	flex-direction: column;
+	/* background: var(--bg-dark); */
+	background: var(--bg-gradient);
 }
 
-.correct {
-	color: var(--correct-color);
+.success-text {
+	color: var(--success);
 }
-.wrong {
-	color: var(--wrong-color);
+.success-bg {
+	background-color: var(--success);
+}
+
+.danger-text {
+	color: var(--danger);
+}
+.danger-bg {
+	background-color: var(--danger);
 }
