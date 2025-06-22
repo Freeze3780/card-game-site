@@ -5,10 +5,12 @@ import A from '../Components/A/A.tsx';
 import Input from '../Components/Input/Input.tsx';
 import supabase from '../../utils/supabase.ts';
 import PrimaryButton from '../Components/Buttons/PrimaryButton/PrimaryButton.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginPage() {
-	// console.log("Hello");
+	const navigator = useNavigate();
+
 	const [email, setEmail] = useState("");
 	const [emailInfo, setEmailInfo] = useState("");
 
@@ -50,6 +52,7 @@ export default function LoginPage() {
 		}
 
 		if (await verifyPassword(password, data.password)){
+			navigator("/home");
 			return true;
 		}else {
 			setPasswordInfo("Incorrect Password");
