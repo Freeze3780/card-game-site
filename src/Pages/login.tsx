@@ -3,8 +3,8 @@ import { verifyPassword } from "../../utils/password.ts";
 
 import A from '../Components/A/A.tsx';
 import Input from '../Components/Input/Input.tsx';
-import Button from '../Components/Button/Button.tsx';
 import supabase from '../../utils/supabase.ts';
+import PrimaryButton from '../Components/Buttons/PrimaryButton/PrimaryButton.tsx';
 
 
 export default function LoginPage() {
@@ -63,7 +63,10 @@ export default function LoginPage() {
 				<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='danger-text' />
 				<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='danger-text' />
 				<A to='#' text="Forgot your password?" />
-				<Button>Login</Button>
+				<PrimaryButton
+					type='submit'
+					text="Login"
+				/>
 				<A to="/register" text="Don't have an account? Sign up"/>
 			</form>
 		</div>

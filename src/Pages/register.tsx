@@ -3,8 +3,8 @@ import { hashPassword } from "../../utils/password.ts";
 import type { User } from "../../utils/types.ts";
 
 import Input from "../Components/Input/Input";
-import Button from "../Components/Button/Button";
 import supabase from "../../utils/supabase";
+import PrimaryButton from "../Components/Buttons/PrimaryButton/PrimaryButton.tsx";
 
 export default function RegisterPage() {
 	const [email, setEmail] = useState("");
@@ -156,7 +156,10 @@ export default function RegisterPage() {
 					info={passwordInfo}
 					infoClass="danger-text"
 				/>
-				<Button>Sign up</Button>
+				<PrimaryButton
+					text="Sign Up"
+					type="submit"
+				/>
 			</form>
 		</div>
 	);
