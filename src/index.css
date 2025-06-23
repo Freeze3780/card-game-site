@@ -50,7 +50,7 @@ body {
 }
 
 /* ------------- Global Styles ------------- */
-.flex-centered-container {
+.center {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

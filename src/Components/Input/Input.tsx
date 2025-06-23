@@ -12,6 +12,18 @@ type props = {
 	infoClass?: string;
 };
 
+/**
+	* Input Component.
+		* @param value string
+		* @param label string
+		* @param type string
+		* @param placeholder(Optional) string
+		* @param onChange(Optional) ChangeEventHandler<HTMLInputElement>
+		* @param ref(Optional) React.Ref<HTMLInputElement>
+		* @param info(Optional) string
+		* @param infoClass(Optional) string
+	* @returns div>(label + input)
+*/
 export default function Input({ value, label, type, placeholder, onChange, ref, info, infoClass }: props) {
 	return (
 		<div className={styles.container}>

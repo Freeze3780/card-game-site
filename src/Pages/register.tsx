@@ -5,8 +5,12 @@ import type { User } from "../../utils/types.ts";
 import Input from "../Components/Input/Input";
 import supabase from "../../utils/supabase";
 import PrimaryButton from "../Components/Buttons/PrimaryButton/PrimaryButton.tsx";
+import { Card, CardHeader, CardContent, CardFooter } from "../Components/Card/Card.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
+	const navigate = useNavigate();
+
 	const [email, setEmail] = useState("");
 	const [emailInfo, setEmailInfo] = useState("");
 
@@ -118,49 +122,65 @@ export default function RegisterPage() {
 				name: name,
 				password: await hashPassword(password)
 			});
-		if (error) console.error(error);
-		else console.log("Row inserted succesfully");
+
+		
+		if (!error){
+			const { data } = await supabase
+				.from("users")
+				.select()
+				.eq("email", email)
+				.single();
+		
+			navigate("/home", { state: data })
+		}
 	}
 
 	return (
-		<div className="flex-centered-container">
-			<form className="column-card" onSubmit={submitHandler}>
-				<Input label="Email"
-					value={email}
-					type="email"
-					placeholder="user@example.com"
-					onChange={emailChangeHandler}
-					info={emailInfo}
-					infoClass="danger-text"
-				/>
-				<Input label="Username"
-					type="text"
-					onChange={nameChangeHandler}
-					value={name}
-					info={nameInfo}
-					infoClass="danger-text"
-				/>
-				<Input label="Password"
-					type="password"
-					ref={passwordRef}
-					onChange={passwordChangeHandler}
-					value={password}
-					info={passwordInfo}
-					infoClass="danger-text"
-				/>
-				<Input label="Confirm Password"
-					type="password"
-					ref={confirmPasswordRef}
-					onChange={confirmPasswordChangeHandler}
-					value={confirmPassword}
-					info={passwordInfo}
-					infoClass="danger-text"
-				/>
-				<PrimaryButton
-					text="Sign Up"
-					type="submit"
-				/>
-			</form>
+		<div className="center">
+			<Card goBack="/login">
+				<form onSubmit={submitHandler}>
+					<CardHeader>Register</CardHeader>
+					<CardContent>
+						<Input label="Email"
+							value={email}
+							type="email"
+							placeholder="user@example.com"
+							onChange={emailChangeHandler}
+							info={emailInfo}
+							infoClass="danger-text"
+						/>
+						<Input label="Username"
+							type="text"
+							onChange={nameChangeHandler}
+							value={name}
+							info={nameInfo}
+							infoClass="danger-text"
+						/>
+						<Input label="Password"
+							type="password"
+							ref={passwordRef}
+							onChange={passwordChangeHandler}
+							value={password}
+							info={passwordInfo}
+							infoClass="danger-text"
+						/>
+						<Input label="Confirm Password"
+							type="password"
+							ref={confirmPasswordRef}
+							onChange={confirmPasswordChangeHandler}
+							value={confirmPassword}
+							info={passwordInfo}
+							infoClass="danger-text"
+						/>
+					</CardContent>
+					<CardFooter>
+						<PrimaryButton
+							text="Sign Up"
+							type="submit"
+						/>
+					</CardFooter>
+				</form>
+			</Card>
 		</div>
 	);
 }

@@ -1,0 +1,33 @@
+.card {
+	border: 2px var(--border) solid;
+	border-radius: 25px;
+	padding: 30px 15px;
+	background: var(--bg-gradient);
+
+	min-width: 20.5vw;
+	min-height: 25vh;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	color: var(--text);
+	font-size: x-large;
+	font-weight: bolder;
+	margin-bottom: 2px;
+}
+.desc {
+	color: var(--text-muted);
+	font-size: small;
+}
+
+.spacer {
+	flex-grow: 1;
+}
+
+.footer {
+	margin-bottom: auto;
+	display: flex;
+	gap: 12px;
+}

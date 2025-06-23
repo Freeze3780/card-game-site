@@ -6,10 +6,11 @@ import Input from '../Components/Input/Input.tsx';
 import supabase from '../../utils/supabase.ts';
 import PrimaryButton from '../Components/Buttons/PrimaryButton/PrimaryButton.tsx';
 import { useNavigate } from 'react-router-dom';
+import { Card, CardHeader, CardContent, CardFooter } from '../Components/Card/Card.tsx';
 
 
 export default function LoginPage() {
-	const navigator = useNavigate();
+	const navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
 	const [emailInfo, setEmailInfo] = useState("");
@@ -52,7 +53,7 @@ export default function LoginPage() {
 		}
 
 		if (await verifyPassword(password, data.password)){
-			navigator("/home");
+			navigate("/home", { state: data });
 			return true;
 		}else {
 			setPasswordInfo("Incorrect Password");
@@ -61,17 +62,24 @@ export default function LoginPage() {
 	}
 
 	return (
-		<div className='flex-centered-container'>
-			<form className="column-card" onSubmit={submitHandler}>
-				<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='danger-text' />
-				<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='danger-text' />
-				<A to='#' text="Forgot your password?" />
-				<PrimaryButton
-					type='submit'
-					text="Login"
-				/>
-				<A to="/register" text="Don't have an account? Sign up"/>
-			</form>
+		<div className='center'>
+			<Card>
+				<form onSubmit={submitHandler}>
+					<CardHeader>Login</CardHeader>
+					<CardContent>
+						<Input value={email} onChange={emailChangeHandler} label="Email" type="email" placeholder="user@example.com" info={emailInfo} infoClass='danger-text' />
+						<Input value={password} onChange={passwordChangeHandler} label="Password" type="password" info={passwordInfo} infoClass='danger-text' />
+						<A to='#' text="Forgot your password?" />
+					</CardContent>
+					<CardFooter>
+						<PrimaryButton
+							type='submit'
+							text="Login"
+						/>
+					</CardFooter>
+					<A to="/register" text="Don't have an account? Sign up"/>
+				</form>
+			</Card>
 		</div>
 	);
 }
