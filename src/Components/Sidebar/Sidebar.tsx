@@ -1,8 +1,7 @@
 import styles from './Sidebar.module.css';
 
 type Props = {
-	className: string;
-	username: string;
+	className?: string;
 }
 
 const defaultProps = {
@@ -10,7 +9,7 @@ const defaultProps = {
 };
 
 export default function Sidebar(props: Props) {
-	const { className }: Props = {
+	const { className } = {
 		...defaultProps,
 		...props
 	};

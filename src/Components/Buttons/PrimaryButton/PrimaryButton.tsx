@@ -1,16 +1,18 @@
 import styles from './PrimaryButton.module.css';
 
 type Props = {
-	type: "submit" | "reset" | "button";
+	type?: "submit" | "reset" | "button";
 	text: string;
 }
 
-const defaultProps = {
+const defaultProps: {
+	 type: "submit" | "reset" | "button" 
+} = {
 	type: "button",
 }
 
 export default function PrimaryButton(props: Props) {
-	const { type, text }: Props = {
+	const { type, text } = {
 		...defaultProps,
 		...props
 	};
