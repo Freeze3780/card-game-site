@@ -1,11 +1,20 @@
 import styles from './Sidebar.module.css';
 
-type props = {
-	className?: string;
+type Props = {
+	className: string;
+	username: string;
 }
 
-export default function Sidebar({ className }: props) {
-	className = typeof className !== "string" ? "": className
+const defaultProps = {
+	className: ""
+};
+
+export default function Sidebar(props: Props) {
+	const { className }: Props = {
+		...defaultProps,
+		...props
+	};
+
 	return (
 		<aside className={`${styles.sidebar} ${className}`}>
 			{/* //TODO */}

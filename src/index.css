@@ -58,16 +58,6 @@ body {
 	height: 100vh;
 }
 
-.column-card {
-	border: 2px var(--border) solid;
-	border-radius: 25px;
-	padding: 30px 15px;
-	display: flex;
-	flex-direction: column;
-	/* background: var(--bg-dark); */
-	background: var(--bg-gradient);
-}
-
 .success-text {
 	color: var(--success);
 }

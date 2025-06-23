@@ -1,7 +1,7 @@
 import type { ChangeEventHandler } from 'react';
 import styles from './Input.module.css';
 
-type props = {
+type Props = {
 	value: string;
 	label: string;
 	type: string;
@@ -10,6 +10,10 @@ type props = {
 	ref?: React.Ref<HTMLInputElement>;
 	info?: string;
 	infoClass?: string;
+};
+
+const defaultProps = {
+
 };
 
 /**
@@ -24,7 +28,12 @@ type props = {
 		* @param infoClass(Optional) string
 	* @returns div>(label + input)
 */
-export default function Input({ value, label, type, placeholder, onChange, ref, info, infoClass }: props) {
+export default function Input(props: Props) {
+	const { value, label, type, placeholder, onChange, ref, info, infoClass }: Props = {
+		...defaultProps,
+		...props
+	};
+
 	return (
 		<div className={styles.container}>
 			<label className={styles.label}>{label}</label>

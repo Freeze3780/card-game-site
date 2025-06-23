@@ -1,15 +1,25 @@
 import styles from './Header.module.css';
+import imgUrl from "../../assets/Icons/person.svg";
 
-type props = {
-	className?: string;
+type Props = {
+	className: string;
+	username: string;
 }
 
-export default function Header({ className }: props) {
-	className = typeof className !== "string" ? "": className
+const defaultProps = {
+	className: "",
+	username: ""
+};
+
+export default function Header(props: Props) {
+	const { className, username }: Props = {
+		...defaultProps,
+		...props
+	}
 	return (
 		<header className={`${styles.header} ${className}`}>
-			{/* //TODO */}
-			Header
+			<p>{username}</p>
+			<img src={imgUrl} alt='User Icon'/>
 		</header>
 	);
 }
