@@ -20,8 +20,8 @@ const defaultProps = {
 	}
 	* ```
 	* @param src source of the icon
-	* @param text text that is shown next to the icon
-	* @param reverse reverses the order of the icon and the text
+	* @param text text that is shown next to the icon (optional)
+	* @param reverse reverses the order of the icon and the text (optional)
 	* @returns 
 */
 export default function IconButton(props: Props) {

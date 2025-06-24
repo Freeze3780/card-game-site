@@ -1,4 +1,10 @@
 import styles from './Sidebar.module.css';
+import IconButton from '../Buttons/IconButton/IconButton';
+
+import hamburgerUrl from "../../assets/Icons/hamburger.svg";
+import houseUrl from "../../assets/Icons/house.svg";
+import cogUrl from "../../assets/Icons/cog.svg";
+
 
 type Props = {
 	className?: string;
@@ -16,8 +22,21 @@ export default function Sidebar(props: Props) {
 
 	return (
 		<aside className={`${styles.sidebar} ${className}`}>
-			{/* //TODO */}
-			Sidebar
+			<div className={styles.hamburger}>
+				<IconButton
+					src={hamburgerUrl}
+				/>
+			</div>
+			<div className={styles.containter}>
+				<IconButton
+					src={houseUrl}
+					text='Home'
+				/>
+				<IconButton
+					src={cogUrl}
+					text='Settings'
+				/>
+			</div>
 		</aside>
 	);
 }

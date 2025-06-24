@@ -2,4 +2,13 @@
 	background-color: var(--bg-light);
 	padding: 1rem;
 	border-right: 3px solid var(--border);
+
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.containter {
+	display: flex;
+	flex-direction: column;
 }

@@ -20,6 +20,7 @@ main {
 	grid-area: main;
 
 	overflow-y: auto;
+	margin-right: 5px;
 
 	display: flex;
 	flex-direction: row;
@@ -27,4 +28,15 @@ main {
 	gap: 65px;
 	padding-left: 60px;
 	padding-top: 60px;
+}
+
+main::-webkit-scrollbar {
+	background-color: var(--border-muted);
+	border-radius: 1000px;
+	width: 10px;
+}
+main::-webkit-scrollbar-thumb {
+	background-color: var(--border);
+	border-radius: 1000px;
+	width: 2px;
 }
