@@ -1,0 +1,24 @@
+.container {
+	border: 3px solid var(--border);
+	border-radius: 50px;
+
+	display: flex;
+	align-content: center;
+	margin-left: 10px;
+	padding: 5px 10px;
+	gap: 5px;
+	cursor: pointer;
+}
+
+.input {
+	all: unset;
+}
+
+.ctrlk {
+	font-size: small;
+	font-weight: bold;
+	color: var(--text-muted);
+	border: 3px solid var(--highlight);
+	border-radius: 25px;
+	padding: 5px;
+}
